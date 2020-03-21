@@ -37,8 +37,8 @@ function buildCharts(sample) {
 
         // Todo: Instead of just grabbing the first 10, get those
         // with the highest frequency in the population.
-        let otu_array = result.otu_ids.slice(0,10).forEach(item => item.toString());
-        let otu_values = result.sample_values.slice(0,10);
+        let otu_array = result.otu_ids.slice(0,10).map(item => item.toString()).reverse();
+        let otu_values = result.sample_values.slice(0,10).reverse();
         console.log(`OTU Array: ${otu_array}`);
         console.log(`OTU Values: ${otu_values}`);
 
@@ -47,8 +47,9 @@ function buildCharts(sample) {
         var data = [{
             type:'bar',
             x: otu_values,
-            // y: ['giraffes', 'orangutans', 'monkeys'],
-            y: otu_array,
+            y: ['giraffes', 'orangutans', 'monkeys', 'three', 'four', 'five', 'six',
+                        'seven', 'eight', 'nine'],
+            // y: otu_array,
             orientation: 'h'
         }]
 
@@ -66,7 +67,6 @@ function buildCharts(sample) {
     
         // Plotly.newPlot("bar", data, layout);
         Plotly.newPlot("bar", data, layout);
-
 
     });
 }
