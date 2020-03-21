@@ -1,3 +1,6 @@
+// Alexis Perumal, 3/20/20
+// Starter code from Kevin (tutor), 3/20/20
+
 function buildMetadata(sample) {
     d3.json("data/samples.json").then((data) => {
         var metadata = data.metadata;
@@ -31,6 +34,39 @@ function buildCharts(sample) {
 
         var result = resultArray[0];
         console.log(result)
+
+        // Todo: Instead of just grabbing the first 10, get those
+        // with the highest frequency in the population.
+        let otu_array = result.otu_ids.slice(0,10).forEach(item => item.toString());
+        let otu_values = result.sample_values.slice(0,10);
+        console.log(`OTU Array: ${otu_array}`);
+        console.log(`OTU Values: ${otu_values}`);
+
+        console.log(`In buildCharts(), ${sample}`)
+
+        var data = [{
+            type:'bar',
+            x: otu_values,
+            // y: ['giraffes', 'orangutans', 'monkeys'],
+            y: otu_array,
+            orientation: 'h'
+        }]
+
+        var layout = {
+          title: `Most occuring OTU in subject #${sample}`
+        //   xaxis: {
+        //     range: [startDate, endDate],
+        //     type: "date"
+        //   },
+        //   yaxis: {
+        //     autorange: true,
+        //     type: "linear"
+        //   }
+        };
+    
+        // Plotly.newPlot("bar", data, layout);
+        Plotly.newPlot("bar", data, layout);
+
 
     });
 }
