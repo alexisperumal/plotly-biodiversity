@@ -19,6 +19,37 @@ d3.json("data/samples.json").then((incomingData) => {
     var individuals = incomingData.metadata.map(person => person.id);
 
     console.log(individuals)
+
+    // var dropDown = d3.select("select")
+
+    var dropdownMenu = d3.select("#selDataset");
+
+    data = [ {
+        key1: "value1",
+        key2: "value2"
+    }]
+
+    var options = dropdownMenu.selectAll("option")
+        .data("boo")
+        .enter()
+        .append("option");
+
+
+
+    // dyn-web.com/tutorials/forms/select/option/
+
+    // var sel = document.getElementById('selDataset');
+
+    // var opt = document.createElement('option');
+
+    // opt.appendChild( document.createTextNode('Porsche') );
+
+    // opt.value = 'porsche';
+
+    // sel.appendChild(opt);
+
+    // console.log('Just tried to add an item.')
+
   
     // // Use the map method with the arrow function to return all the filtered movie titles.
     // var titles = filteredMovies.map(movies =>  movies.title);
@@ -67,11 +98,17 @@ d3.json("data/samples.json").then((incomingData) => {
 //   }
 
 
+
 // Function called by DOM changes
 function getData() {
+    console.log('In getData()');
     var dropdownMenu = d3.select("#selDataset");
     // Assign the value of the dropdown menu option to a variable
+    console.log('In getData()')
+    
     var dataset = dropdownMenu.property("value");
+
+
     // Initialize an empty array for the country's data
     var data = [];
   
@@ -89,7 +126,7 @@ function getData() {
   }
 
   console.log("Hi!, outside d3.json()")
-  console.log(`Individuals: ${individuals}`)
+  //console.log(`Individuals: ${individuals}`)
 
 //   init();
 
