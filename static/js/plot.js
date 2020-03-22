@@ -1,5 +1,13 @@
 // Alexis Perumal, 3/20/20
 // Starter code from Kevin (tutor), 3/20/20
+//
+// To do (3/22/20):
+// * Implement 2d Bubble chart
+// * Push to GitHub for hosting
+// * Check Rubric
+// * Add Gauge Chart (Opt.)
+// * Cleanup Readme
+
 
 function buildMetadata(sample) {
     d3.json("data/samples.json").then((data) => {
@@ -60,7 +68,6 @@ function buildCharts(sample) {
         //     return (individual.id == sample);
         // }
 
-
         // // console.log(`data: ${data}`);
         // let metadata = data.metadata;
         // // console.log(`data.metadata: ${metadata}`);
@@ -73,7 +80,6 @@ function buildCharts(sample) {
         // var s = `<p>ID: ${individual.id}</p>`
         // var text = document.createTextNode(s);
         // meta_pane.appendChild(text);
-
 
         Plotly.newPlot("bar", chart_data, layout);
 
