@@ -1,15 +1,20 @@
 # plotly-biodiversity
 UCSD Data Science HW15 Web Visualization using D3 and Plotly, biodiversity visualizations
 
+# Description
+Provides visualizations of Belly Button microbe types and counts across anonymized subjects.
 
-if you have python3 run:
+### Published Website
+https://alexisperumal.github.io/plotly-biodiversity/
 
-```
-python3 -m http.server 8000
-```
+Special thanks to Alan (TA) for patiently helping me understand the assignment, Kevin Nguyen (Tutor) who provided additional starter code, and Arun who provided advice!
 
+### Key Files
 
-if you have python2 run:
-```
-python -m SimpleHTTPServer 8000
-```
+* index.html https://github.com/alexisperumal/plotly-biodiversity/blob/master/index.html
+
+* plots.js https://github.com/alexisperumal/plotly-biodiversity/blob/master/static/js/plot.js
+
+### About the Data
+
+Hulcr, J. et al.(2012) _A Jungle in There: Bacteria in Belly Buttons are Highly Diverse, but Predictable_. Retrieved from: [http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/](http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/)
