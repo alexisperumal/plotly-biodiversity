@@ -77,9 +77,9 @@ function buildCharts(sample) {
             type: 'scatter',
             marker: {
                 color: result.otu_ids,
-                colorscale: 'PuOr',
+                colorscale: 'Earth',
                 showscale: true,
-                size: result.sample_values.map(v => parseFloat(v)*0.5)
+                size: result.sample_values.map(v => parseFloat(v)*0.75)
             }
         };
 
