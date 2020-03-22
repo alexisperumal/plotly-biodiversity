@@ -3,10 +3,10 @@
 //
 // To do (3/22/20):
 // * Implement 2d Bubble chart - DONE!
-// * Push to GitHub for hosting
-// * Check Rubric
-// * Add Gauge Chart (Opt.)
-// * Cleanup Readme
+// * Push to GitHub for hosting - DONE!
+// * Check Rubric Check - DONE!
+// * Add Gauge Chart (Opt.) - DONE!
+// * Cleanup Readme - About to do...
 
 
 function buildMetadata(sample) {
@@ -89,6 +89,7 @@ function buildCharts(sample) {
             y: result.sample_values,
             mode: 'markers',
             type: 'scatter',
+            text: result.otu_ids.map(id => `OTU #${id}`),
             marker: {
                 color: result.otu_ids,
                 colorscale: 'Earth',
