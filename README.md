@@ -1,7 +1,7 @@
 # plotly-biodiversity
 UCSD Data Science HW15 Web Visualization using D3 and Plotly, biodiversity visualizations
 
-# Description
+### Description
 Provides visualizations of Belly Button microbe types and counts across anonymized subjects.
 
 ### Published Website
