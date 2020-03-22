@@ -16,16 +16,7 @@ function buildMetadata(sample) {
         // Use `Object.entries` to add each key and value pair to the panel
         // Hint: Inside the loop, you will need to use d3 to append new
         // tags for each key-value in the metadata.
-
-        // console.log(result);
-
-        // Object.entries(result).forEach( entry => console.log(`k: ${entry[0]}, v: ${entry[1]}`) );
-
-        Object.entries(result).forEach( entry => {
-            // console.log(`k: ${entry[0]}, v: ${entry[1]}`);
-            PANEL.append('p').text(`${entry[0]}: ${entry[1]}`);
-        } );
-
+        Object.entries(result).forEach( entry => PANEL.append('p').text(`${entry[0]}: ${entry[1]}`));
 
         // BONUS: Build the Gauge Chart
     });
@@ -83,6 +74,8 @@ function buildCharts(sample) {
         // var text = document.createTextNode(s);
         // meta_pane.appendChild(text);
 
+
+        Plotly.newPlot("bar", chart_data, layout);
 
     });
 }
