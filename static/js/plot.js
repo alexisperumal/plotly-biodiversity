@@ -66,16 +66,20 @@ function buildCharts(sample) {
 
         // 2. Create the scatter plot
 
+        // console.log('result: ', result)
+        // console.log('result.otu_ids', result.otu_ids);
+        // console.log('result.sample_values', result.sample_values);
+
         let trace1 = {
             x: result.otu_ids,
-            y: result.otu_values,
+            y: result.sample_values,
             mode: 'markers',
             type: 'scatter',
             marker: {
                 color: result.otu_ids,
                 colorscale: 'PuOr',
                 showscale: true,
-                size: result.otu_ids.map(v => parseFloat(v)/100.0)
+                size: result.sample_values.map(v => parseFloat(v)*0.5)
             }
         };
 
