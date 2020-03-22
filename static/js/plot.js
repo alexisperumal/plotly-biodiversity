@@ -36,9 +36,13 @@ function buildCharts(sample) {
     // console.log(`sample: ${sample}`)
     d3.json("samples.json").then((data) => {
         // 1. Create the main horizontal bar chart.
-        var samples = data.samples;
+        var samples = data.samples; // samples is the array of results on all samples.
         var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
-        var result = resultArray[0];      
+        var result = resultArray[0]; // result has all the data for the specified sample.
+                                     // This includes: otu_ids, sample_values, otu_labels
+                                     
+        // console.log('samples: ', samples);
+        // console.log('result: ', result);
 
         // Todo: Instead of just grabbing the first 10, get those
         // with the highest frequency in the population.
@@ -46,7 +50,7 @@ function buildCharts(sample) {
         let otu_labels = result.otu_labels.slice(0,10).reverse();
         let otu_values = result.sample_values.slice(0,10).reverse();
 
-        var chart_data = [{
+        var hbar_chart_data = [{
             type:'bar',
             x: otu_values,
             y: otu_array,
@@ -54,34 +58,34 @@ function buildCharts(sample) {
             orientation: 'h'
         }]
 
-        var layout = {
+        var hbar_chart_layout = {
           title: `Most occuring OTU in subject #${sample}`
         };
     
-        // Plotly.newPlot("bar", chart_data, layout);
-        Plotly.newPlot("bar", chart_data, layout);
+        Plotly.newPlot("bar", hbar_chart_data, hbar_chart_layout);
 
-        // 2. Create the metadata table for the specific individual selected
-        // Execute as a separate function above, therefore comment all this out.
-        // function filterIndividual(individual) {
-        //     console.log(`individual: ${individual.id}, sample: ${sample}`)
-        //     return (individual.id == sample);
-        // }
+        // 2. Create the scatter plot
 
-        // // console.log(`data: ${data}`);
-        // let metadata = data.metadata;
-        // // console.log(`data.metadata: ${metadata}`);
-        // console.log(`sample: ${sample}`);
-        // let individual = metadata.filter(filterIndividual)[0]; // Now we have the matching metadata object
-        // console.log(`individual: ${individual}, length: ${individual.length}`);
-        // console.log('individual', individual.id);
+        let trace1 = {
+            x: result.otu_ids,
+            y: result.otu_values,
+            mode: 'markers',
+            type: 'scatter',
+            marker: {
+                color: result.otu_ids,
+                colorscale: 'PuOr',
+                showscale: true,
+                size: result.otu_ids.map(v => parseFloat(v)/100.0)
+            }
+        };
 
-        // var meta_pane = document.getElementById("sample-metadata");
-        // var s = `<p>ID: ${individual.id}</p>`
-        // var text = document.createTextNode(s);
-        // meta_pane.appendChild(text);
+        let bubble_data = [trace1];
 
-        Plotly.newPlot("bar", chart_data, layout);
+        var bubble_chart_layout = {
+            title: `OTU Prevelance in subject #${sample}`
+          };
+
+        Plotly.newPlot("bubble", bubble_data, bubble_chart_layout);
 
     });
 }
