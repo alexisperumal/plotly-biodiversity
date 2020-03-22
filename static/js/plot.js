@@ -2,7 +2,7 @@
 // Starter code from Kevin (tutor), 3/20/20
 //
 // To do (3/22/20):
-// * Implement 2d Bubble chart
+// * Implement 2d Bubble chart - DONE!
 // * Push to GitHub for hosting
 // * Check Rubric
 // * Add Gauge Chart (Opt.)
@@ -27,6 +27,20 @@ function buildMetadata(sample) {
         Object.entries(result).forEach( entry => PANEL.append('p').text(`${entry[0]}: ${entry[1]}`));
 
         // BONUS: Build the Gauge Chart
+        // Spedometer type gauge
+        var gauge_data = [ {
+            domain: {x: [0,1], y:[0,1]},
+            gauge: {
+                axis: {range: [0, 10]}
+            },
+            value: result.wfreq,
+            title: { text: `Subject #${sample}: BB Scrubs per Week`},
+            type: "indicator",
+            mode: "gauge+number"
+            } ];
+        let gauge_layout = { width: 600, height: 500, margin: {t:0, b:0}};
+        Plotly.newPlot('gauge', gauge_data, gauge_layout);
+
     });
 }
 
