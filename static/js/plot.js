@@ -35,11 +35,17 @@ function buildCharts(sample) {
         var result = resultArray[0];
         console.log(result)
 
+
+        // Todo: just do one slice and then grab the fields
+
         // Todo: Instead of just grabbing the first 10, get those
         // with the highest frequency in the population.
-        let otu_array = result.otu_ids.slice(0,10).map(item => item.toString()).reverse();
+        // let otu_array = result.otu_ids.slice(0,10).map(item => `OTU  ${item}`)).reverse();
+        let otu_array = result.otu_ids.slice(0,10).map(item => `OTU  ${item}`).reverse();
+        let otu_labels = result.otu_labels.slice(0,10).reverse();
         let otu_values = result.sample_values.slice(0,10).reverse();
         console.log(`OTU Array: ${otu_array}`);
+        console.log("OTU Array: ", otu_array);
         console.log(`OTU Values: ${otu_values}`);
 
         console.log(`In buildCharts(), ${sample}`)
@@ -47,9 +53,8 @@ function buildCharts(sample) {
         var data = [{
             type:'bar',
             x: otu_values,
-            y: ['giraffes', 'orangutans', 'monkeys', 'three', 'four', 'five', 'six',
-                        'seven', 'eight', 'nine'],
-            // y: otu_array,
+            y: otu_array,
+            text: otu_labels,
             orientation: 'h'
         }]
 
