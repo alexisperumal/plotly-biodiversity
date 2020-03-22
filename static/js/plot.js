@@ -17,40 +17,37 @@ function buildMetadata(sample) {
         // Hint: Inside the loop, you will need to use d3 to append new
         // tags for each key-value in the metadata.
 
+        // console.log(result);
+
+        // Object.entries(result).forEach( entry => console.log(`k: ${entry[0]}, v: ${entry[1]}`) );
+
+        Object.entries(result).forEach( entry => {
+            // console.log(`k: ${entry[0]}, v: ${entry[1]}`);
+            PANEL.append('p').text(`${entry[0]}: ${entry[1]}`);
+        } );
+
 
         // BONUS: Build the Gauge Chart
-
     });
 }
 
+
+
 function buildCharts(sample) {
+    // console.log(`sample: ${sample}`)
     d3.json("samples.json").then((data) => {
+        // 1. Create the main horizontal bar chart.
         var samples = data.samples;
         var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
-        console.log("results")
-        console.log(resultArray)
-        console.log("what is the size of the array?")
-        console.log(resultArray.length)
-
-        var result = resultArray[0];
-        console.log(result)
-
-
-        // Todo: just do one slice and then grab the fields
+        var result = resultArray[0];      
 
         // Todo: Instead of just grabbing the first 10, get those
         // with the highest frequency in the population.
-        // let otu_array = result.otu_ids.slice(0,10).map(item => `OTU  ${item}`)).reverse();
         let otu_array = result.otu_ids.slice(0,10).map(item => `OTU  ${item}`).reverse();
         let otu_labels = result.otu_labels.slice(0,10).reverse();
         let otu_values = result.sample_values.slice(0,10).reverse();
-        console.log(`OTU Array: ${otu_array}`);
-        console.log("OTU Array: ", otu_array);
-        console.log(`OTU Values: ${otu_values}`);
 
-        console.log(`In buildCharts(), ${sample}`)
-
-        var data = [{
+        var chart_data = [{
             type:'bar',
             x: otu_values,
             y: otu_array,
@@ -60,18 +57,32 @@ function buildCharts(sample) {
 
         var layout = {
           title: `Most occuring OTU in subject #${sample}`
-        //   xaxis: {
-        //     range: [startDate, endDate],
-        //     type: "date"
-        //   },
-        //   yaxis: {
-        //     autorange: true,
-        //     type: "linear"
-        //   }
         };
     
-        // Plotly.newPlot("bar", data, layout);
-        Plotly.newPlot("bar", data, layout);
+        // Plotly.newPlot("bar", chart_data, layout);
+        Plotly.newPlot("bar", chart_data, layout);
+
+        // 2. Create the metadata table for the specific individual selected
+        // Execute as a separate function above, therefore comment all this out.
+        // function filterIndividual(individual) {
+        //     console.log(`individual: ${individual.id}, sample: ${sample}`)
+        //     return (individual.id == sample);
+        // }
+
+
+        // // console.log(`data: ${data}`);
+        // let metadata = data.metadata;
+        // // console.log(`data.metadata: ${metadata}`);
+        // console.log(`sample: ${sample}`);
+        // let individual = metadata.filter(filterIndividual)[0]; // Now we have the matching metadata object
+        // console.log(`individual: ${individual}, length: ${individual.length}`);
+        // console.log('individual', individual.id);
+
+        // var meta_pane = document.getElementById("sample-metadata");
+        // var s = `<p>ID: ${individual.id}</p>`
+        // var text = document.createTextNode(s);
+        // meta_pane.appendChild(text);
+
 
     });
 }
